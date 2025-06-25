@@ -17,4 +17,13 @@
 - Netflix GPT
     - Search Bar
     - Movie Suggestion
+
+# Project work
+- create-react-app
+- tailwind setup
+- Header
+- Routing
+- Login Form/ signup form
+- Form Validation
+- useRef Hook
     
