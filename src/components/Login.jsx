@@ -10,6 +10,7 @@ import {
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const name = useRef(null);
   const email = useRef(null);
@@ -39,7 +40,11 @@ const Login = () => {
         });
     } else {
       // Signin Form
-      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
@@ -48,7 +53,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode+ " "+errorMessage)
+          setErrorMessage(errorCode + " " + errorMessage);
         });
     }
   };
@@ -56,6 +61,7 @@ const Login = () => {
   const handleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
+
   return (
     <div className="relative min-h-screen flex flex-col">
       <Header />
@@ -88,12 +94,22 @@ const Login = () => {
           placeholder="Email Address"
           className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition"
         />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-        />
+        <div className="relative">
+          <input
+            ref={password}
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition pr-12"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+            tabIndex={-1}
+          >
+            {showPassword ? "Hide" : "Show"}
+          </button>
+        </div>
         {errorMessage && <p>{errorMessage}</p>}
         <button
           className="p-3 my-4 bg-red-700 hover:bg-red-800 w-full rounded-lg font-semibold text-lg transition"
