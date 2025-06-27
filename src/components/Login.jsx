@@ -1,6 +1,12 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -9,15 +15,43 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
-
   const handleButtonClick = () => {
-    const message = checkValidData(email.current.value,password.current.value); 
+    const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
-  }
+    if (message) return;
 
-
-
-
+    if (!isSignInForm) {
+      // Signup Form
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+        });
+    } else {
+      // Signin Form
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode+ " "+errorMessage)
+        });
+    }
+  };
 
   const handleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -33,39 +67,40 @@ const Login = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
       </div>
-      <form onClick={(e) => e.preventDefault()}
-      className="w-full max-w-md mx-auto mt-36 p-10 bg-transparent text-white rounded-lg shadow-2xl border border-gray-700 backdrop-blur-md">
+      <form
+        onClick={(e) => e.preventDefault()}
+        className="w-full max-w-md mx-auto mt-36 p-10 bg-transparent text-white rounded-lg shadow-2xl border border-gray-700 backdrop-blur-md"
+      >
         <h1 className="font-extrabold text-4xl py-4 text-center tracking-wide">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
-        {
-          !isSignInForm && (
-            <input
+        {!isSignInForm && (
+          <input
             ref={name}
-          type="text"
-          placeholder="Full Name"
-          className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition"
-        />
-          )
-        }
+            type="text"
+            placeholder="Full Name"
+            className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition"
+          />
+        )}
         <input
-        ref={email}
+          ref={email}
           type="text"
           placeholder="Email Address"
           className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition"
         />
         <input
-        ref={password}
+          ref={password}
           type="password"
           placeholder="Password"
           className="p-3 my-3 w-full bg-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600 transition"
         />
         {errorMessage && <p>{errorMessage}</p>}
-        <button className="p-3 my-4 bg-red-700 hover:bg-red-800 w-full rounded-lg font-semibold text-lg transition"
-        onClick={handleButtonClick}
+        <button
+          className="p-3 my-4 bg-red-700 hover:bg-red-800 w-full rounded-lg font-semibold text-lg transition"
+          onClick={handleButtonClick}
         >
-            {isSignInForm ? "Sign In" : "Sign Up"}
-          </button>
+          {isSignInForm ? "Sign In" : "Sign Up"}
+        </button>
         <div className="flex items-center justify-between text-sm text-gray-400 mt-2">
           <label className="flex items-center">
             <input type="checkbox" className="accent-red-700 mr-2" />
