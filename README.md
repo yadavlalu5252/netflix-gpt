@@ -26,4 +26,14 @@
 - Login Form/ signup form
 - Form Validation
 - useRef Hook
+
+
+# Firebase setup
+- ``` npm i firebase ```
+- ```npm i -g firebase-tools```
+- ```firebase login```
+- ``` firebase init ```
+- ``` npm run build ```
+- ``` firebase deploy ```
+
     
