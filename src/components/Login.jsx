@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -72,7 +73,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           // console.log(user);
-          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -91,7 +91,7 @@ const Login = () => {
       <Header />
       <div className="absolute inset-0 -z-10">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/8200f588-2e93-4c95-8eab-ebba17821657/web/IN-en-20250616-TRIFECTA-perspective_9cbc87b2-d9bb-4fa8-9f8f-a4fe8fc72545_medium.jpg"
+          src={BG_URL}
           alt="bg"
           className="w-full h-full object-cover brightness-50"
         />

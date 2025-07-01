@@ -36,4 +36,8 @@
 - ``` npm run build ```
 - ``` firebase deploy ```
 
+
+# Video API
+- ```https://developer.themoviedb.org/reference/intro/getting-started```
+
     
