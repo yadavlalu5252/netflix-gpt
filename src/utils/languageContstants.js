@@ -5,16 +5,20 @@ const lang = {
         searchPlaceholder: "What would you like to watch today?"
     },
     hindi: {
-        search: "Search",
-        searchPlaceholder: "What would you like to watch today?"
+        search: "खोज",
+        searchPlaceholder: "आज आप क्या देखना चाहेंगे?"
     },
-    French: {
-        search: "Search",
-        searchPlaceholder: "What would you like to watch today?"
+    french: {
+        search: "Recherche",
+        searchPlaceholder: "Qu'aimeriez-vous regarder aujourd'hui ?"
     },
-    Spanish: {
-        search: "Search",
-        searchPlaceholder: "What would you like to watch today?"
+    spanish: {
+        search: "Buscar",
+        searchPlaceholder: "¿Qué te gustaría ver hoy?"
+    },
+    marathi: {
+        search: "शोध",
+        searchPlaceholder: "आज तुम्हाला काय पहायला आवडेल?"
     },
 };
 
