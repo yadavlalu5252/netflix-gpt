@@ -5,11 +5,11 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzg3NWIyYjA5ODMxM2RjZDAzNWVjZjBlMWJlNTc3MSIsIm5iZiI6MTc1MTEyNzM2OS44LCJzdWIiOiI2ODYwMTU0OWE4ZGEyYzg2MzJhNGQwYTEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.X0Ztm6HF1BwIGW1EVSCMr-K3rCuWEBP7Y3luJF2lJrU'
+    Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_KEY,
   }
 };
 
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 export const BG_URL="https://assets.nflxext.com/ffe/siteui/vlv3/8200f588-2e93-4c95-8eab-ebba17821657/web/IN-en-20250616-TRIFECTA-perspective_9cbc87b2-d9bb-4fa8-9f8f-a4fe8fc72545_medium.jpg"
 export const SUPPORTED_LANGUAGES = [{identifier:"en", name:"English"},{identifier:"hindi", name:"Hindi"},{identifier:"french", name:"French"},{identifier:"spanish", name:"Spanish"},{identifier:"marathi", name:"Marathi"},]
-export const OPENAI_KEY="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";
+export const OPENAI_KEY=process.env.REACT_APP_OPENAI_KEY;

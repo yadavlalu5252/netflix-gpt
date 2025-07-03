@@ -47,10 +47,6 @@ const GptSearchBar = () => {
       console.log(tmdbResult);
       dispatch(addGptMovieResult({movieNames: gptMovies, movieResults:tmdbResult}))
 
-
-
-
-
     } catch (error) {
       alert("Error: " + error.message);
     }
