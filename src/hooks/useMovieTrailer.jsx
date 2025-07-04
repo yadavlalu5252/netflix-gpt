@@ -1,10 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addTrailerVideos } from "../utils/moviesSlice";
 import { useEffect } from "react";
 
 const useMovieTrailer = (videoId) => {
   const dispatch = useDispatch();
+  const trailerVideos = useSelector((store) => store.movies.trailerVideos);
+
   const getMovieData = async () => {
     const data = await fetch(
       // videoId is hardcoded here but need to add dynamically
@@ -20,7 +22,7 @@ const useMovieTrailer = (videoId) => {
 
   useEffect(() => {
     // if (!movieId) return;
-    getMovieData();
+    !trailerVideos && getMovieData();
   }, []);
 };
 
