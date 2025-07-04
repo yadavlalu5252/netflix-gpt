@@ -40,4 +40,9 @@
 # Video API
 - ```https://developer.themoviedb.org/reference/intro/getting-started```
 
+# Responsive
+- bydefualt = mobile
+- md = desktop
+- sm = tablet
+
     

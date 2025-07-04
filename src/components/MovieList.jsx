@@ -19,7 +19,7 @@ const MovieList = ({ title, movies }) => {
   if (!movies) return;
   return (
     <div>
-      <h1 className="text-2xl font-bold">{title}</h1>
+      <h1 className="text-lg md:text-2xl font-bold">{title}</h1>
       <div className="relative">
         <button
           onClick={scrollLeft}

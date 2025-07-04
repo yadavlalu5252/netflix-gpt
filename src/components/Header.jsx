@@ -61,11 +61,11 @@ const Header = () => {
   }
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img src={NETFLIX_LOGO} alt="logo" className="w-44" />
+    <div className="absolute w-screen px-8 py-2  bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+      <img src={NETFLIX_LOGO} alt="logo" className="w-44 mx-auto md:mx-0" />
 
       {user && (
-        <div className="flex p-2 items-center cursor-pointer">
+        <div className="flex p-2 items-center cursor-pointer mx-auto md:mx-0">
           {gptSearch && (
             <select className="m-2 p-2 rounded-lg bg-purple-700 text-white"
             onClick={handleLangChange}>
